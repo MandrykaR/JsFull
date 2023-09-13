@@ -1,6 +1,6 @@
 import {
     calc
-} from '../calc';
+} from '../calculator';
 
 it('should return sum', () => {
     expect(calc('2 + 3')).toBe('2 + 3 = 5')
