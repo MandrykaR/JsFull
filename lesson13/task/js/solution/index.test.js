@@ -1,7 +1,7 @@
 import getSum, {
     getSquaredArray,
     getOddNumbers
-} from "./calculator";
+} from "../calculator";
 
 it('should get squered arr', () => {
     const result = getSquaredArray([1, 2, 3])
