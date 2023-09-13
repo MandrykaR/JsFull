@@ -1,8 +1,9 @@
  export const getSquaredArray = arr => {
-     arr.filter(num => num * num);
+     return arr.map(num => num * num);
  }
+
  export const getOddNumbers = arr => {
-     arr.filter(num => num % 2 === 0);
+     return arr.filter(num => num % 2 === 1);
  }
 
  export default (a, b) => a + b;
