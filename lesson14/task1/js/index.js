@@ -1,13 +1,23 @@
-let message = "Just learn it! Your Gromcode";
+let memoryNum = 0;
 
-function setMessage(newMessage) {
-    message = newMessage;
+export const add = (num) => {
+    memoryNum += num;
+    return ramNum;
 }
 
-function sendMessage(name) {
-    console.log(`${name}, ${message}`);
+console.log(add(21));
+
+export const decrease = (num) => {
+    memoryNum -= num;
+    return ramNum;
 }
 
-setMessage('Good job');
+console.log(decrease(23));
 
-sendMessage('Ann');
+export const reset = () => {
+    ramNum = 0;
+}
+
+export const getMemo = () => {
+    return ramNum;
+}

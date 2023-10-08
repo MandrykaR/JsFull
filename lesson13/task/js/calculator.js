@@ -1,5 +1,5 @@
  export const getSquaredArray = arr => {
-     return arr.map(num => num * num);
+    return arr.map(num => num * num);
  }
 
  export const getOddNumbers = arr => {
