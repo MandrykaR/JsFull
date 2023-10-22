@@ -1,6 +1,6 @@
 export const setTitle = (text) => {
-    const titleElem = document.querySelector('.title').textContent = text;;
-    return titleElem;
+    const titleElement = document.querySelector('.title');
+    titleElement.textContent = text;
 }
 
 setTitle('TEXT');
