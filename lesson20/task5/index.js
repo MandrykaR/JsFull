@@ -1,4 +1,4 @@
-class User {
+export class User {
     constructor(id, name, sessionId) {
         this._id = id;
         this._name = name;
@@ -19,6 +19,7 @@ class User {
 }
 
 
+
 class UserRepository {
     constructor(users) {
         this._users = Object.freeze(users);
@@ -32,7 +33,22 @@ class UserRepository {
         return this._users.map(user => user.name)
     }
 
-    getUserNameById(id){
-        return this._users.find(id => user.id)
+    getUserIds() {
+        return this._users.map(user => user.id)
+    }
+
+    getUserNameById(id) {
+        const user = this._users.find(user => user.id === id);
+        return user ? user.name : null;
     }
 }
+
+const users = [
+    new User(1, 'Andrey', 'session2'),
+    new User(2, 'Stas', 'session4'),
+    new User(3, 'Nikita', 'session1'),
+];
+
+const user1 = new UserRepository(users);
+
+console.log(user1.getUserIds());

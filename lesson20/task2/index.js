@@ -9,7 +9,7 @@ export class Vehicle {
     }
 
     stop() {
-        console.log(`${this.name} is stopped`);
+        console.log(`${this.name} stopped`);
     }
 }
 
