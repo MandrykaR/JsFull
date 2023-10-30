@@ -15,8 +15,8 @@ export const finishList = () => {
     const list = document.querySelector('.list');
 
     list.prepend(num1);
-    list.append(num4);
-    list.append(num6);
+    list.querySelector('.special').before(num4);
+    list.querySelector('.special').after(num6);
     list.append(num8);
 }
 
