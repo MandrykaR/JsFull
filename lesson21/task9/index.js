@@ -1,4 +1,5 @@
 export const finishList = () => {
+    const list = document.querySelector('.list');
 
     const num1 = document.createElement('li');
     num1.textContent = '1';
@@ -12,7 +13,6 @@ export const finishList = () => {
     const num8 = document.createElement('li');
     num8.textContent = '8';
 
-    const list = document.querySelector('.list');
 
     list.prepend(num1);
     list.querySelector('.special').before(num4);
