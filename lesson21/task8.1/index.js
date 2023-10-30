@@ -1,0 +1,23 @@
+export const finishList = () => {
+
+    const num1 = document.createElement('li');
+    num1.textContent = '1';
+
+    const num4 = document.createElement('li');
+    num4.textContent = '4';
+
+    const num6 = document.createElement('li');
+    num6.textContent = '6';
+
+    const num8 = document.createElement('li');
+    num8.textContent = '8';
+
+    const list = document.querySelector('.list');
+
+    list.prepend(num1);
+    list.append(num4);
+    list.append(num6);
+    list.append(num8);
+}
+
+finishList();
