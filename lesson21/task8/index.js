@@ -1,4 +1,4 @@
-const createButton = (buttonText) => {
+export const createButton = (buttonText) => {
     const addText = document.createElement('button');
     addText.textContent = buttonText;
 
