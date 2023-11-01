@@ -20,4 +20,3 @@ export const finishList = () => {
     list.append(num8);
 }
 
-finishList();
