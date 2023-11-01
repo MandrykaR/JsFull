@@ -14,5 +14,3 @@ export const manageClasses = () => {
         elementLast.classList.add('another-class');
     }
 }
-
-manageClasses();
