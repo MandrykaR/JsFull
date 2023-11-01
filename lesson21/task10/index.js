@@ -11,4 +11,4 @@ export const finishFrom = () => {
     loginForm.prepend(loginInput);
 }
 
-finishFrom();
+
