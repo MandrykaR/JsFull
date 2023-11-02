@@ -31,30 +31,34 @@ pElem.addEventListener('click', logGreenP);
 spanElem.addEventListener('click', logGreySpan, true);
 spanElem.addEventListener('click', logGreenSpan);
 
+
+
+
+const attachEventHandlers = () => {
+    divElem.addEventListener('click', logGreyDiv, true);
+    divElem.addEventListener('click', logGreenDiv);
+    pElem.addEventListener('click', logGreyP, true);
+    pElem.addEventListener('click', logGreenP);
+    spanElem.addEventListener('click', logGreySpan, true);
+    spanElem.addEventListener('click', logGreenSpan);
+    handlersEnabled = true;
+};
+
+
+const removeEventHandlers = () => {
+    divElem.removeEventListener('click', logGreyDiv, true);
+    divElem.removeEventListener('click', logGreenDiv);
+    pElem.removeEventListener('click', logGreyP, true);
+    pElem.removeEventListener('click', logGreenP);
+    spanElem.removeEventListener('click', logGreySpan, true);
+    spanElem.removeEventListener('click', logGreenSpan);
+    handlersEnabled = false;
+};
+
 clearBtn.addEventListener('click', () => {
     eventsListElem.innerHTML = '';
 })
 
-removeBtn.addEventListener('click', () => {
-    if (handlersEnabled) {
-        divElem.removeEventListener('click', logGreyDiv, true);
-        divElem.removeEventListener('click', logGreenDiv);
-        pElem.removeEventListener('click', logGreyP, true);
-        pElem.removeEventListener('click', logGreenP);
-        spanElem.removeEventListener('click', logGreySpan, true);
-        spanElem.removeEventListener('click', logGreenSpan);
-        handlersEnabled = false;
-    }
-});
+removeBtn.addEventListener('click', removeEventHandlers);
 
-attachBtn.addEventListener('click', () => {
-    if (!handlersEnabled) {
-        divElem.addEventListener('click', logGreyDiv, true);
-        divElem.addEventListener('click', logGreenDiv);
-        pElem.addEventListener('click', logGreyP, true);
-        pElem.addEventListener('click', logGreenP);
-        spanElem.addEventListener('click', logGreySpan, true);
-        spanElem.addEventListener('click', logGreenSpan);
-        handlersEnabled = true;
-    }
-});
+attachBtn.addEventListener('click', attachEventHandlers);
