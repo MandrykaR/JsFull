@@ -1,33 +1,60 @@
-'use strict';
+const divElem = document.querySelector('.rect_div');
+const pElem = document.querySelector('.rect_p');
+const spanElem = document.querySelector('.rect_span');
+const eventsListElem = document.querySelector('.events-list');
 
-export const tasks = [
-    { text: 'Buy milk', done: false },
-    { text: 'Pick up Tom from airport', done: false },
-    { text: 'Visit party', done: false },
-    { text: 'Visit doctor', done: true },
-    { text: 'Buy meat', done: true },
-];
+const clearBtn = document.querySelector('.clear-btn');
+const removeBtn = document.querySelector('.remove-handlers-btn');
+const attachBtn = document.querySelector('.remove-handlers-btn');
+
+const logTarget = (text, color) => {
+    eventsListElem.innerHTML += `<span style = "color: ${color}; margin-left:8px "; >${text}</span>`
+}
+
+const logGreenDiv = logTarget.bind(null, 'DIV', 'green');
+const logGreenP = logTarget.bind(null, 'P', 'green');
+const logGreenSpan = logTarget.bind(null, 'SPAN', 'green');
 
 
-const renderTasks = tasksList => {
-    const listElem = document.querySelector('.list');
+const logGreyDiv = logTarget.bind(null, 'DIV', 'grey');
+const logGreyP = logTarget.bind(null, 'P', 'grey');
+const logGreySpan = logTarget.bind(null, 'SPAN', 'grey');
 
-    const listItemsElems = tasksList
-        .sort((a, b) => a.done - b.done)
-        .map(({ text, done }) => {
-            const listItemElem = document.createElement('li');
-            listItemElem.classList.add('list__item');
-            const checkboxElem = document.createElement('input');
-            checkboxElem.setAttribute('type', 'checkbox');
-            checkboxElem.checked = done;
-            done ? listItemElem.classList.add('list__item_done') : null;
-            checkboxElem.classList.add('list__item-checkbox')
-            listItemElem.append(checkboxElem, text);
+let handlersEnabled = true;
 
-            return listItemElem;
-        })
+divElem.addEventListener('click', logGreyDiv, true);
+divElem.addEventListener('click', logGreenDiv);
 
-    listElem.append(...listItemsElems);
-};
+pElem.addEventListener('click', logGreyP, true);
+pElem.addEventListener('click', logGreenP);
 
-renderTasks(tasks);
+spanElem.addEventListener('click', logGreySpan, true);
+spanElem.addEventListener('click', logGreenSpan);
+
+clearBtn.addEventListener('click', () => {
+    eventsListElem.innerHTML = '';
+})
+
+removeBtn.addEventListener('click', () => {
+    if (handlersEnabled) {
+        divElem.removeEventListener('click', logGreyDiv, true);
+        divElem.removeEventListener('click', logGreenDiv);
+        pElem.removeEventListener('click', logGreyP, true);
+        pElem.removeEventListener('click', logGreenP);
+        spanElem.removeEventListener('click', logGreySpan, true);
+        spanElem.removeEventListener('click', logGreenSpan);
+        handlersEnabled = false;
+    }
+});
+
+attachBtn.addEventListener('click', () => {
+    if (!handlersEnabled) {
+        divElem.addEventListener('click', logGreyDiv, true);
+        divElem.addEventListener('click', logGreenDiv);
+        pElem.addEventListener('click', logGreyP, true);
+        pElem.addEventListener('click', logGreenP);
+        spanElem.addEventListener('click', logGreySpan, true);
+        spanElem.addEventListener('click', logGreenSpan);
+        handlersEnabled = true;
+    }
+});
