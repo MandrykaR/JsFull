@@ -15,17 +15,19 @@ const generateId = () => {
     return maxId + 1;
 }
 
-const createdTask = () => {
-    const taskText = inputElem.value;
+const createTask = (text) => {
+    const newTask = { id: generateId(), text, done: false };
+    tasks.push(newTask);
+    renderTasks();
+}
 
-    if (taskText) {
-        const newTask = { id: generateId(), text: taskText, done: false };
-        tasks.push(newTask);
+const toggleTask = (taskId, done) => {
+    const task = tasks.find(task => task.id === taskId);
+    if (task) {
+        task.done = done;
         renderTasks();
-        inputElem.value = '';
     }
 }
-buttonCreate.addEventListener('click', createdTask);
 
 const renderTasks = () => {
     listElem.innerHTML = '';
@@ -38,19 +40,13 @@ const renderTasks = () => {
         checkbox.setAttribute('type', 'checkbox');
         checkbox.checked = done;
         checkbox.classList.add('list__item-checkbox');
-        checkbox.setAttribute('data-task-id', id);
+        checkbox.dataset.id = id;
+        checkbox.addEventListener('change', (e) => {
+            toggleTask(id, e.target.checked);
+        });
         if (done) {
             listItemElem.classList.add('list__item_done');
         }
-        checkbox.addEventListener('change', () => {
-            const taskId = parseInt(checkbox.getAttribute('data-task-id'));
-            const task = tasks.find(task => task.id === taskId);
-            if (task) {
-                task.done = checkbox.checked;
-                renderTasks();
-            }
-        });
-
         const taskTextElem = document.createElement('span');
         taskTextElem.textContent = text;
 
@@ -59,5 +55,27 @@ const renderTasks = () => {
     })
 };
 
-
 renderTasks();
+
+const onToggleTask = (e) => {
+    const isCheckbox = e.target.classList.contains('list__item-checkbox');
+    if (!isCheckbox) {
+        return;
+    }
+    const taskId = e.target.dataset.id;
+    toggleTask(taskId, e.target.checked);
+};
+
+listElem.addEventListener('click', onToggleTask);
+
+const onCreateTask = () => {
+    const taskTitleInputElem = document.querySelector('.task-input');
+    const text = taskTitleInputElem.value;
+    if (!text) {
+        return;
+    }
+    taskTitleInputElem.value = '';
+    createTask(text);
+};
+
+buttonCreate.addEventListener('click', onCreateTask);
