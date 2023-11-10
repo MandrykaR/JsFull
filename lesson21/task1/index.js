@@ -1,81 +1,70 @@
+const listElem = document.querySelector('.list');
+
 const tasks = [
-    { id: 1, text: 'Buy milk', done: false },
-    { id: 2, text: 'Pick up Tom from airport', done: false },
-    { id: 3, text: 'Visit party', done: false },
-    { id: 4, text: 'Visit doctor', done: true },
-    { id: 5, text: 'Buy meat', done: true },
+    { text: 'Buy milk', done: false, id: '1' },
+    { text: 'Pick up Tom from airport', done: false, id: '2' },
+    { text: 'Visit party', done: false, id: '3' },
+    { text: 'Visit doctor', done: true, id: '4' },
+    { text: 'Buy meat', done: true, id: '5' },
 ];
 
-const listElem = document.querySelector('.list');
-const inputElem = document.querySelector('.task-input');
-const buttonCreate = document.querySelector('.create-task-btn');
-
-const generateId = () => {
-    const maxId = Math.max(...tasks.map(task => task.id), 0);
-    return maxId + 1;
-}
-
-const createTask = (text) => {
-    const newTask = { id: generateId(), text, done: false };
-    tasks.push(newTask);
-    renderTasks();
-}
-
-const toggleTask = (taskId, done) => {
-    const task = tasks.find(task => task.id === taskId);
-    if (task) {
-        task.done = done;
-        renderTasks();
-    }
-}
-
-const renderTasks = () => {
+const renderTasks = tasksList => {
     listElem.innerHTML = '';
+    const tasksElems = tasksList
+        .slice()
+        .sort((a, b) => a.done - b.done)
+        .map(({ text, done, id }) => {
+            const listItemElem = document.createElement('li');
+            listItemElem.classList.add('list__item');
+            const checkbox = document.createElement('input');
+            checkbox.setAttribute('type', 'checkbox');
+            checkbox.setAttribute('data-id', id);
+            checkbox.checked = done;
+            checkbox.classList.add('list__item-checkbox');
+            if (done) {
+                listItemElem.classList.add('list__item_done');
+            }
+            listItemElem.append(checkbox, text);
 
-    tasks.sort((a, b) => a.done - b.done).forEach(({ id, text, done }) => {
-        const listItemElem = document.createElement('li');
-        listItemElem.classList.add('list__item');
-
-        const checkbox = document.createElement('input');
-        checkbox.setAttribute('type', 'checkbox');
-        checkbox.checked = done;
-        checkbox.classList.add('list__item-checkbox');
-        checkbox.dataset.id = id;
-        checkbox.addEventListener('change', (e) => {
-            toggleTask(id, e.target.checked);
+            return listItemElem;
         });
-        if (done) {
-            listItemElem.classList.add('list__item_done');
-        }
-        const taskTextElem = document.createElement('span');
-        taskTextElem.textContent = text;
 
-        listItemElem.append(checkbox, taskTextElem);
-        listElem.appendChild(listItemElem);
-    })
+    listElem.append(...tasksElems);
 };
 
-renderTasks();
+renderTasks(tasks);
 
-const onToggleTask = (e) => {
+const onToggleTask = e => {
     const isCheckbox = e.target.classList.contains('list__item-checkbox');
+
     if (!isCheckbox) {
         return;
     }
-    const taskId = e.target.dataset.id;
-    toggleTask(taskId, e.target.checked);
+
+    const taskData = tasks.find(task => task.id === e.target.dataset.id);
+    Object.assign(taskData, { done: e.target.checked });
+    renderTasks(tasks);
 };
 
 listElem.addEventListener('click', onToggleTask);
 
 const onCreateTask = () => {
     const taskTitleInputElem = document.querySelector('.task-input');
+
     const text = taskTitleInputElem.value;
+
     if (!text) {
         return;
     }
     taskTitleInputElem.value = '';
-    createTask(text);
+
+    tasks.push({
+        text,
+        done: false,
+        id: Math.random().toString(),
+    });
+    renderTasks(tasks);
 };
 
-buttonCreate.addEventListener('click', onCreateTask);
+const createBtnElem = document.querySelector('.create-task-btn');
+createBtnElem.addEventListener('click', onCreateTask);
