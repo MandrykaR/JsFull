@@ -4,7 +4,7 @@ let students = [
     { name: 'Sam', birthDate: '05/15/2022' }
 ];
 
-const studentsBirthDays = (students) => {
+export const studentsBirthDays = (students) => {
     const studentsCopy = [...students];
 
     studentsCopy.sort((a, b) => new Date(a.birthDate) - new Date(b.birthDate));
