@@ -1,4 +1,4 @@
-const getDiff = (startDate, endDate) => {
+export const getDiff = (startDate, endDate) => {
     let timeDiff = Math.abs(endDate - startDate);
 
     let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
