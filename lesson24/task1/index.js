@@ -1,7 +1,7 @@
 const week = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'];
 
 
-const dayOfWeek = (date, days) => {
+export const dayOfWeek = (date, days) => {
     let resultDay = new Date(date);
     resultDay.setDate(resultDay.getDate() + days);
 
