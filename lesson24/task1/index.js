@@ -10,7 +10,7 @@ export const dayOfWeek = (date, days) => {
     return week[dayOfWeekIndex]
 }
 
-console.log(dayOfWeek(new Date(2023, 10, 12), 1));
+dayOfWeek(new Date(2023, 10, 12), 1);
 
 
 
