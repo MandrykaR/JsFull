@@ -1,5 +1,5 @@
 
-const week = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'];
+export const week = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'];
 
 const dayOfWeek = (date, days) => {
     const day = new Date(date).getDate();
