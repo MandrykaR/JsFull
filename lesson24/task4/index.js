@@ -7,7 +7,7 @@ let students = [
 export const studentsBirthDays = (students) => {
     const studentsCopy = [...students];
 
-    studentsCopy.sort((a, b) => new Date(b.birthDate) - new Date(a.birthDate));
+    studentsCopy.sort((a, b) => new Date(a.birthDate) - new Date(b.birthDate));
 
     let groupedStudents = {};
 
@@ -17,6 +17,10 @@ export const studentsBirthDays = (students) => {
 
         groupedStudents[month] = groupedStudents[month] ? groupedStudents[month].concat(student.name) : [student.name];
     });
+
+    for (let month in groupedStudents) {
+        groupedStudents[month].sort((a, b) => new Date(b.birthDate) - new Date(a.birthDate));
+    }
 
     return groupedStudents;
 }
