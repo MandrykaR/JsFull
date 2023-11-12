@@ -1,4 +1,4 @@
-const getGreenwichTime = (date) => {
+export const getGreenwichTime = (date) => {
     return date.toISOString().substr(11, 5)
 }
 
