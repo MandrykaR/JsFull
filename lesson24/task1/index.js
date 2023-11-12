@@ -8,8 +8,8 @@ export const dayOfWeek = (date, days) => {
     return week[new Date(dateInFuture).getDay()];
 }
 
-const result = dayOfWeek(new Date(2023, 10, 12), 0)
-console.log(result);
+dayOfWeek(new Date(2023, 10, 12), 0)
+
 
 
 
