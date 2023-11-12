@@ -7,7 +7,7 @@ let students = [
 export const studentsBirthDays = (students) => {
     const studentsCopy = [...students];
 
-    studentsCopy.sort((a, b) => new Date(a.birthDate) - new Date(b.birthDate));
+    studentsCopy.sort((a, b) => new Date(b.birthDate) - new Date(a.birthDate));
 
     let groupedStudents = {};
 
