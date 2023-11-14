@@ -1,4 +1,4 @@
-const week = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'];
+const week = ['Su', 'Mo', 'We', 'Th', 'Fr', 'St'];
 
 export const dayOfWeek = (date, days) => {
     let resultDay = new Date(date);
@@ -9,7 +9,7 @@ export const dayOfWeek = (date, days) => {
     return week[dayOfWeekIndex]
 }
 
-dayOfWeek(new Date(2023, 10, 12), 1);
+
 
 
 
