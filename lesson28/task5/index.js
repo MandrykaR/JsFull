@@ -1,4 +1,4 @@
-const shmoment = (initialDate) => {
+export const shmoment = (initialDate) => {
     let currentDate = new Date(initialDate);
 
     const operations = {
