@@ -1,4 +1,4 @@
-const addImage = (imgSrc, callback) => {
+export const addImage = (imgSrc, callback) => {
     const imgElem = document.createElement('img');
     imgElem.setAttribute('alt', 'My Photo');
     imgElem.src = imgSrc;
@@ -12,7 +12,7 @@ const addImage = (imgSrc, callback) => {
 
     imgElem.addEventListener('load', onImageLoaded);
 
-    imgElem.addEventListener('error', () => callback('Image load faild'))
+    imgElem.addEventListener('error', () => callback('Image load is failed'))
 }
 
 const imgSrc = 'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg';
