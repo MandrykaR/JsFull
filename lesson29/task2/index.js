@@ -6,3 +6,4 @@ export const pinger = (count, period) => {
     }, period)
 };
 
+pinger(5, 1000); 
