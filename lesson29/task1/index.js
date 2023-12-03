@@ -5,25 +5,25 @@ export const addImage = (imgSrc, callback) => {
     const containerElem = document.querySelector('.page');
     containerElem.append(imgElem);
 
-    const onImageLoad = () => {
+    const onImageLoaded = () => {
         const { width, height } = imgElem;
         callback(null, { width, height });
     }
 
-    imgElem.addEventListener('load', onImageLoad);
+    imgElem.addEventListener('load', onImageLoaded);
 
     imgElem.addEventListener('error', () => callback('Image load is failed'))
 }
 
 
-const onImageLoaded = (error, imgElem) => {
+const handleImageCallback = (error, dimensions) => {
     if (error) {
         console.log(error);
         return;
     }
 
-    const { width, height } = imgElem;
+    const { width, height } = dimensions;
     const sizeElem = document.querySelector('.image-size');
 
     sizeElem.textContent = `${width} x ${height}`;
-};  
+};
