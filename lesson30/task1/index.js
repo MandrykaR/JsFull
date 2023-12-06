@@ -20,13 +20,13 @@ export const addImage = imgSrc => {
 
 const imgSrc = 'https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg';
 
-const resultPromise = addImageWithPromise(imgSrc);
+const resultPromise = addImage(imgSrc);
 
 resultPromise
     .then((data) => {
-    const { width, height } = data;
-    const sizeElem = document.querySelector('.image-size');
-    sizeElem.textContent = `${width} x ${height}`;
-})
+        const { width, height } = data;
+        const sizeElem = document.querySelector('.image-size');
+        sizeElem.textContent = `${width} x ${height}`;
+    })
     .catch((error) => console.log(error.message))
 
