@@ -18,12 +18,18 @@ export const requestUserData = userId => {
     return promis;
 };
 
-
 requestUserData('777')
-    .then((data) => console.log('User Data:', data))
-    .catch((error) => console.log('Error:', error.message))
-
+    .then((data) => {
+        console.log('User Data:', data);
+    })
+    .catch((error) => {
+        console.log('Error:', error.message);
+    });
 
 requestUserData('broken')
-    .then((data) => console.log('User Data:', data))
-    .catch((error) => console.log('Error:', error.message))
+    .then((data) => {
+        console.log('User Data:', data);
+    })
+    .catch((error) => {
+        console.log('Error:', error.message);
+    });
