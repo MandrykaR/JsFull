@@ -8,7 +8,7 @@ export const requestUserData = userId => {
         } else {
             setTimeout(() => {
                 resolve({
-                    ame: 'John',
+                    name: 'John',
                     age: 17,
                     userId: `user id ${userId}`,
                     email: `userid${userId}@example.com`
