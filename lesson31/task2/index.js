@@ -9,7 +9,7 @@ export const asyncCalculator = (numbr) => new Promise((resolve) => {
             const result = value * value;
             console.log(`Squred value: ${result}`);
             resolve(result);
-        }, 500)
+        }, 1000)
     }))
     .then(value => {
         const result = value * 2;
