@@ -53,9 +53,9 @@ const newUserData = {
     age: 42,
 };
 
-// createUser(newUserData).then(() => {
-//     console.log('User created');
-// });
+createUser(newUserData).then(() => {
+    console.log('User created');
+});
 
 const updatedUserData = {
     email: 'new@email.com',
@@ -64,9 +64,9 @@ const updatedUserData = {
     age: 17,
 };
 
-// updateUser('1', updatedUserData).then(() => {
-//     console.log('User updated');
-// });
+updateUser('1', updatedUserData).then(() => {
+    console.log('User updated');
+});
 
 // deleteUser('2').then(() => {
 //     console.log('User updated');
