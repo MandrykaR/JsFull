@@ -53,9 +53,9 @@ const newUserData = {
     age: 42,
 };
 
-createUser(newUserData).then(() => {
-    console.log('User created');
-});
+// createUser(newUserData).then(() => {
+//     console.log('User created');
+// });
 
 const updatedUserData = {
     email: 'new@email.com',
