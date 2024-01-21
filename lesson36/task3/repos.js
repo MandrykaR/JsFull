@@ -1,19 +1,23 @@
-const listElem = document.querySelector('.repo-list')
+const listElem = document.querySelector('.repo-list');
 
-export const cleanReposList = () => {
+export const cleanReposList = async () => {
     listElem.innerHTML = '';
-}
+};
 
-export const renderRepos = reposList => {
-    const reposListElems = reposList
-        .map(({ name }) => {
+export const renderRepos = async (reposList) => {
+    try {
+        cleanReposList();
+
+        const reposListElems = await Promise.all(reposList.map(async ({ name }) => {
             const listElem = document.createElement('li');
             listElem.classList.add('repo-list__item');
             listElem.textContent = name;
 
             return listElem;
-        })
-    cleanReposList();
-    listElem.append(...reposListElems);
-}
+        }));
 
+        listElem.append(...reposListElems);
+    } catch (error) {
+        console.error('Error rendering repos:', error.message);
+    }
+};
