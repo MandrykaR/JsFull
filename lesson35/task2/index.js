@@ -21,6 +21,5 @@ failRequest
         console.log('onSuccess2', data);
     })
     .catch(function onError3(error) {
-        console.error('onError3', error.message);
-        console.log('Server error');
+        console.log('onError3', error.message);
     });
