@@ -22,5 +22,5 @@ failRequest
     })
     .catch(function onError3(error) {
         console.error('onError3', error.message);
+        console.log('Server error');
     });
-
