@@ -10,7 +10,7 @@ const defaultUser = {
     location: '',
 }
 
-renderUserData(defaultUser)
+renderUserData(defaultUser);
 
 
 const showUserBtnElem = document.querySelector('.name-form__btn');

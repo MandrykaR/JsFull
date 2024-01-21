@@ -8,7 +8,7 @@ export const fetchUserData = async userName => {
 
 
 export const fetchRepositories = async url => {
-    const response = fetch(url);
+    const response = await fetch(url);
 
     if (response.ok) {
         return await response.json()
