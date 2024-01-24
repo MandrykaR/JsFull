@@ -1,20 +1,16 @@
 export const getUsersBlogs = users => {
-   const fetchUserBlog = async userId => {
-      try {
-         const response = await fetch(`https://api.github.com/users/${userId}`);
-         if (!response.ok) {
-            throw new Error(`Error fetching blog for user ${userId}: ${response.statusText}`);
-         }
-         const userData = await response.json();
-         return userData.url;
-      } catch (error) {
-         throw new Error(error.message);
-      }
+   const fetchUserBlog = userId => fetch(`https://api.github.com/users/${userId}`);
+
+   const fetchBlogs = async () => {
+      const promises = users.map(userId => fetchUserBlog(userId));
+      const res = await Promise.all(promises);
+
+      return Promise.all(res.map(res => res.json().then(userData => userData.html_url)));
    };
 
-   return Promise.all(users.map(fetchUserBlog));
+   return fetchBlogs();
 };
 
-// examples
+// Примеры использования
 getUsersBlogs(['google', 'facebook', 'reactjs']).then(linksList => console.log(linksList));
 getUsersBlogs(['microsoft']).then(linksList => console.log(linksList));
