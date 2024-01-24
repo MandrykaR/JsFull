@@ -1,4 +1,4 @@
-const getUsersBlogs = users => {
+export const getUsersBlogs = users => {
    const fetchUserBlog = async userId => {
       try {
          const response = await fetch(`https://api.github.com/users/${userId}`);
