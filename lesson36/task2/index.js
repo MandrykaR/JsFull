@@ -1,16 +1,30 @@
 export const getUsersBlogs = users => {
-   const fetchUserBlog = userId => fetch(`https://api.github.com/users/${userId}`);
+   const fetchUserBlog = userId => fetch(`https://api.github.com/users/${userId}`)
+      .then(response => {
+         if (!response.ok) {
+            throw new Error(`Error fetching blog for user ${userId}: ${response.statusText}`);
+         }
+         return response.json();
+      });
 
    const fetchBlogs = async () => {
-      const promises = users.map(userId => fetchUserBlog(userId));
-      const res = await Promise.all(promises);
+      try {
+         const promises = users.map(userId => fetchUserBlog(userId));
+         const responses = await Promise.all(promises);
 
-      return Promise.all(res.map(res => res.json().then(userData => userData.html_url)));
+         return responses.map(userData => userData.blog);
+      } catch (error) {
+         throw new Error(error.message);
+      }
    };
 
    return fetchBlogs();
 };
 
-// Примеры использования
-getUsersBlogs(['google', 'facebook', 'reactjs']).then(linksList => console.log(linksList));
-getUsersBlogs(['microsoft']).then(linksList => console.log(linksList));
+getUsersBlogs(['google', 'facebook', 'reactjs'])
+   .then(linksList => console.log(linksList))
+   .catch(error => console.error(error.message));
+
+getUsersBlogs(['microsoft'])
+   .then(linksList => console.log(linksList))
+   .catch(error => console.error(error.message));
