@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MandrykaR/kod#readme",
   "dependencies": {
+    "axios": "^1.6.5",
     "eslint": "^8.47.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
